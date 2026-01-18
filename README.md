@@ -12,3 +12,14 @@ mocking framework like [mockk](https://mockk.io/) can break test isolation.
 This respository provides solutions for those challenges in the form of recepis, that can
 be copied to your own project.
 
+# Disclaimer
+
+The recipes are focused on the technology stack I use at work. Those are:
+
+- JUnit
+- AssertJ
+- Spring Boot
+- MongoDB
+- AWS services
+- [mockk](https://mockk.io/)
+
