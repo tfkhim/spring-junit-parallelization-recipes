@@ -45,6 +45,33 @@
         }
       );
 
-      formatter = forSupportedSystems ({ pkgs, ... }: pkgs.nixfmt-tree);
+      formatter = forSupportedSystems (
+        { pkgs, ... }:
+        let
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        in
+        pkgs.treefmt.withConfig {
+          runtimeInputs = with pkgs; [
+            nixfmt
+            ktlint
+          ];
+
+          settings.formatter = {
+            nixfmt = {
+              command = "nixfmt";
+              includes = [ "*.nix" ];
+            };
+
+            ktlint = {
+              command = "ktlint";
+              options = [ "--format" ];
+              includes = [
+                "*.kt"
+                "*.kts"
+              ];
+            };
+          };
+        }
+      );
     };
 }
